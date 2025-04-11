@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Full viewport height */
+    overflow: hidden;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Preserves image quality and aspect ratio */
+    background-color: #000;
+    /* Dark background for letterboxing */
+}
+
+/* For devices where full quality is critical */
+@media (min-width: 1200px) {
+    .carousel-image {
+        object-fit: contain;
+        /* Ensures full quality on large screens */
+    }
+}
+
+/* For mobile devices where filling the screen is more important */
+@media (max-width: 768px) {
+    .carousel-image {
+        object-fit: cover;
+        /* Covers the entire area on small screens */
+    }
+}
+
+.arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 15px;
+    z-index: 10;
+}
+
+.arrow {
+    font-size: clamp(20px, 4vw, 30px);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: clamp(8px, 2vw, 15px);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.bullets-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.bullet {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bullet.active {
+    background-color: white;
+    transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .arrow {
+        padding: 8px;
+    }
+
+    .bullets-container {
+        bottom: 10px;
+    }
+
+    .bullet {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+    }
+}
